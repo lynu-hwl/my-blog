@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>首页</title>
+  <link rel="stylesheet" href="/customer/css/base.css">
+  <link rel="stylesheet" href="/customer/css/index.css">
+</head>
+
+<body>
+  <!-- 头部框架开始 -->
+  <div class="header">
+    <div class="w1100">
+      <!-- 网站logo开始 -->
+      <h1 class="logo fl">
+        <a href="default.html"><img src="/customer/images/logo.png" alt="黑马程序员"></a>
+      </h1>
+      <!-- 网站logo结束 -->
+      <!-- 网站导航开始 -->
+      <ul class="navigation fr">
+        <li>
+          <a class="active" href="index.html">首页</a>
+        </li>
+        <li>
+          <a href="#">登录</a>
+        </li>
+      </ul>
+      <!-- 网站导航结束 -->
+    </div>
+  </div>
+  <!-- 头部框架结束 -->
+  <!-- 文章列表开始 -->
+  <ul class="list w1100">
+    {{each list}}
+    <li class="fl">
+      <a href="/customer/article/?id={{@$value._id}}" class="thumbnail">
+        <img src="{{$value.cover}}">
+      </a>
+      <div class="content">
+        <a class="article-title" href="/customer/article/?id={{@$value._id}}">{{$value.title}}</a>
+        <div class="article-info">
+          <span class="author">{{$value.author.username}}</span>
+          <span>{{dateFormat($value.time,"yyyy-mm-dd")}}</span>
+        </div>
+        <div class="brief">
+          {{$value.content}}
+        </div>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+  <!-- 文章列表结束 -->
+
+  <!-- 分页开始 -->
+  <div class="page w1100">
+    {{if page>1}}
+    <a href="/customer?page=1">上一页</a>
+    {{/if}}
+    {{each count}}
+    <a href="/customer?page={{$value}}" class="{{$value==page?'active':''}}">1</a>
+    {{/each}}
+    {{if page<count}}
+    <a href="/customer?page={{count}}">下一页</a>
+    {{/if}}
+  </div>
+  <!-- 分页结束 -->
+</body>
+
+</html>
