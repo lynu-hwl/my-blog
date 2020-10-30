@@ -1,0 +1,5 @@
+node_modules/
+*.log
+logs/
+.idea/
+.DS_Stroe
